@@ -25,7 +25,7 @@ export default class fileUpload extends Component{
         })
         .then(res=>{
             console.log(res)
-            this.props.history.push('/uploadTerm')
+            this.props.history.push('/api/uploadTerm')
         })
         .catch(err=>{
             console.log(err)

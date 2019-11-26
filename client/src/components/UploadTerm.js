@@ -18,7 +18,7 @@ export default class fileUpload extends Component{
         const formData = new FormData(); 
         console.log(this.state.file)
         formData.append('file',this.state.file)
-        axios.post('/uploadTerm',formData,{
+        axios.post('/api/uploadTerm',formData,{
             headers:{
                 'Content-Type': 'multipart/form-data'
             }
