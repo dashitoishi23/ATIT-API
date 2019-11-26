@@ -18,14 +18,14 @@ export default class fileUpload extends Component{
         const formData = new FormData(); 
         console.log(this.state.file)
         formData.append('file',this.state.file)
-        axios.post('/upload',formData,{
+        axios.post('/api/upload',formData,{
             headers:{
                 'Content-Type': 'multipart/form-data'
             }
         })
         .then(res=>{
             console.log(res)
-            this.props.history.push('/api/uploadTerm')
+            this.props.history.push('/uploadTerm')
         })
         .catch(err=>{
             console.log(err)
