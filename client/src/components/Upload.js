@@ -9,9 +9,13 @@ export default class fileUpload extends Component{
         }
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+        this.onClick = this.onClick.bind(this)
     }
     onChange(e){
         this.setState({file:e.target.files[0]})
+    }
+    onClick(){
+        this.props.history.push('/merit')
     }
     onSubmit(e){
         e.preventDefault()
@@ -34,6 +38,7 @@ export default class fileUpload extends Component{
     }
     render(){
         return(
+        <div>
         <form onSubmit={this.onSubmit}>
         <div className="form-group"  >
             <label htmlFor="exampleFormControlFile1">Upload ATIT excelsheet</label>
@@ -41,6 +46,8 @@ export default class fileUpload extends Component{
             <button type="submit">Upload file</button>
         </div>
         </form>
+        <button onClick={this.onClick}>Merit List of Students</button>
+        </div>
         )
     }
 } 
