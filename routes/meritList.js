@@ -173,7 +173,7 @@ router.post("/getAllocations", (req, res) => {
       .find({ eligible: true })
       .sort([["totalScore", -1], ["maths", -1], ["physics", -1]])
       .then(scores=>{
-        console.log(resp)
+        console.log(scores)
         res.json(scores)
       });
   } catch (e) {
