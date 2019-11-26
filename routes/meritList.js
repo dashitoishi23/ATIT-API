@@ -173,7 +173,10 @@ router.get("/getAllocations", (req, res) => {
     atitModel
       .find({ eligible: true })
       .sort([["totalScore", -1], ["maths", -1], ["physics", -1]])
-      .then(res=>res.json(res));
+      .then(resp=>{
+        console.log(resp)
+        res.json(resp)
+      });
   } catch (e) {
     console.log(e);
     res.sendStatus(500);
