@@ -173,7 +173,7 @@ router.get("/getAllocations", async (req, res) => {
     let response = await atitModel
       .find({ eligible: true })
       .sort([["totalScore", -1], ["maths", -1], ["physics", -1]]);
-    res.send(response);
+    res.json({resp: response});
   } catch (e) {
     console.log(e);
     res.sendStatus(500);
