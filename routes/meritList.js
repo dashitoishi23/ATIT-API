@@ -6,7 +6,7 @@ let list = require("../models/merList");
 let atitModel = require("../models/atit");
 let departModel = require("../models/departments");
 
-router.get('/slidingup', async (req,res) => {
+router.post('/slidingup', async (req,res) => {
   let response = await atitModel
   .find({ eligible: true })
   .sort([["totalScore", -1], ["maths", -1], ["physics", -1]]);
