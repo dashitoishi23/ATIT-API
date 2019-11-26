@@ -11,7 +11,7 @@ export default class AllocList extends Component{
         }
     }
     componentDidMount(){
-        axios.get('/mer/getAllocations')
+        axios.get('/api/mer/getAllocations')
         .then(res=>{
             console.log(res)
             this.setState({allocList:res.data})

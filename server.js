@@ -30,9 +30,9 @@ if(process.env.NODE_ENV === 'production'){
     res.sendFile(path.resolve(__dirname,'client','build','index.html'))
   })
 }
-app.use( '/', uplRoute );
-app.use('/mer',merRoute);
-app.use('/dept', deptRoute)
+app.use( '/api', uplRoute );
+app.use('/api/mer',merRoute);
+app.use('/api/dept', deptRoute)
 
 const port = process.env.PORT || 5000;
 

@@ -14,7 +14,7 @@ export default class MeritList extends Component{
         let year = {
             deptYear: 2018
           }
-        axios.post('/mer/atitScoresAndUser',year)
+        axios.post('/api/mer/atitScoresAndUser',year)
         .then(res=>{
           console.log(res.data)
             this.setState({allocList:res.data})
