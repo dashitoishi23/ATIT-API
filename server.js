@@ -6,6 +6,7 @@ const db = require('./config/keys').mongo
 const uplRoute = require('./routes/upload')
 const merRoute = require('./routes/meritList')
 const deptRoute = require("./routes/department");
+const path = require('path')
 
 
 let app = express();
@@ -23,6 +24,12 @@ mongoose.connect(db,{
 })
 .then(res=>console.log('MongoDB Connected'))
 .catch(err=>console.log(err))
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static('client/build'))
+  app.get('*',(req, res)=>{
+    res.sendFile(path.resolve(__dirname,'client','app','index.html'))
+  })
+}
 app.use( '/', uplRoute );
 app.use('/mer',merRoute);
 app.use('/dept', deptRoute)
