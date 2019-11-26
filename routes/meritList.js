@@ -70,7 +70,7 @@ router.get('/slidingup', async (req,res) => {
 
 
   }
-  res.send(response)
+  res.json(response)
 })
 
 router.post("/atitScoresAndUser", async (req, res) => {
@@ -167,13 +167,13 @@ router.post("/atitScoresAndUser", async (req, res) => {
   }
 });
 
-router.get("/getAllocations", async (req, res) => {
+router.get("/getAllocations", (req, res) => {
   try {
     console.time("done filtering");
-    let response = await atitModel
+    atitModel
       .find({ eligible: true })
-      .sort([["totalScore", -1], ["maths", -1], ["physics", -1]]);
-    res.json({resp: response});
+      .sort([["totalScore", -1], ["maths", -1], ["physics", -1]])
+      .then(res=>res.json(res));
   } catch (e) {
     console.log(e);
     res.sendStatus(500);
