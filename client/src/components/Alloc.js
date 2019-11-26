@@ -11,10 +11,10 @@ export default class AllocList extends Component{
         }
     }
     componentDidMount(){
-        axios.get('/api/mer/getAllocations')
-        .then(res=>{
-            console.log(res)
-            this.setState({allocList:res.data})
+        axios.post('/api/mer/getAllocations')
+        .then(ans=>{
+            console.log(ans)
+            this.setState({allocList:ans.data})
         })
         .catch(err=>console.log(err))
     }

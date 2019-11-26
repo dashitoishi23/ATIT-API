@@ -167,15 +167,14 @@ router.post("/atitScoresAndUser", async (req, res) => {
   }
 });
 
-router.get("/getAllocations", (req, res) => {
+router.post("/getAllocations", (req, res) => {
   try {
-    console.time("done filtering");
     atitModel
       .find({ eligible: true })
       .sort([["totalScore", -1], ["maths", -1], ["physics", -1]])
-      .then(resp=>{
+      .then(scores=>{
         console.log(resp)
-        res.json(resp)
+        res.json(scores)
       });
   } catch (e) {
     console.log(e);
