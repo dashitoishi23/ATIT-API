@@ -13,24 +13,21 @@ router.post('/slidingup', async (req,res) => {
   let fileD = await readXlsxFile('./assets/Term.xlsx')
   let depts = await departModel.find({DeptYear: 2018})
   for(let i=1;i<fileD.length;i++){
-    console.log(fileD[i][1] === 0)
-    if(fileD[i][1] === 0){
-      for(let j=0;j<response.length;j++){
-        if(response[j].id == fileD[i][0]){
-          let dep = depts.findIndex(obj=>{
-            return obj.DeptName === response[j].allocated
-          })
-          if(dep!==-1){
-            --depts[dep].allocated
-            response.splice(j,1)
-          }
-        }
+    let ind = response.findIndex(obj=>{
+      return fileD[i][1] === 0 && obj.id == fileD[i][0]
+    })
+    if(ind!==-1){
+      let dep = depts.findIndex(obj=>{
+        return obj.DeptName === response[ind].allocated
+      })
+      if(dep!==-1){
+        --depts[dep].allocated
       }
+      response.splice(ind,1)
     }
   }
   console.log(response)
   for (let i = 0; i < response.length; i++) {
-    if(response[i].allocated == "None"){
       let department = depts.findIndex(obj => {
         return obj.DeptName === response[i].preference;
       });
@@ -66,9 +63,6 @@ router.post('/slidingup', async (req,res) => {
         response[i].allocated = depts[department].DeptName;
         ++depts[department].allocated;
       }
-    }
-
-
   }
   res.json(response)
 })
