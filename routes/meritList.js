@@ -16,14 +16,14 @@ router.post('/slidingup', async (req,res) => {
     let ind = response.findIndex(obj=>{
       return fileD[i][1] === 0 && obj.id == fileD[i][0]
     })
-    if(ind!==-1){
+    if(ind!=-1){
       let dep = depts.findIndex(obj=>{
         return obj.DeptName === response[ind].allocated
       })
       if(dep!==-1){
         --depts[dep].allocated
+        response.splice(ind,1)
       }
-      response.splice(ind,1)
     }
   }
   console.log(response)

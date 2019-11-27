@@ -37,7 +37,7 @@ export default class MeritList extends Component{
                 <Link className="nav-link" to="/">Upload</Link>
                 </li>
                 <li className="nav-item">
-                <Link className="nav-link" to="/">Dashboard</Link>
+                <Link className="nav-link" to="/uploadTerm">Upload Fee Details</Link>
                 </li>
                 <li className="nav-item">
                 <Link className="nav-link" to="/merit">Merit List</Link>
