@@ -14,10 +14,10 @@ const awaitHandler = fn => {
   };
 };
 
-router.get(
+router.post(
   "/deptNamesAndSeats",
   awaitHandler(async (req, res) => {
-    let response = await deptModel.find({DeptYear: req.query.deptYear}).select({"DeptName": 1, "DeptSeats":1});
+    let response = await deptModel.find({DeptYear: 2018}).select({"DeptName": 1, "DeptSeats":1, "allocated":1});
     console.log(response);
     res.send(response);
   })
@@ -56,7 +56,7 @@ router.delete(
 router.put(
   "/changeSeats",
   awaitHandler(async (req, res) => {
-    let response = await deptModel.findOneAndUpdate({DeptName: req.body.deptName, DeptYear: req.body.deptYear},{DeptSeats: req.body.deptSeats, allocated:0}, {new: true})
+    let response = await deptModel.findOneAndUpdate({DeptName: req.body.deptName, DeptYear: 2018},{DeptSeats: req.body.deptSeats, allocated:0}, {new: true})
     if(response){
     res.send(response)
     }else{

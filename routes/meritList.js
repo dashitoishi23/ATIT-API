@@ -12,6 +12,7 @@ router.post('/slidingup', async (req,res) => {
   .sort([["totalScore", -1], ["maths", -1], ["physics", -1]]);
   let fileD = await readXlsxFile('./assets/Term.xlsx')
   let depts = await departModel.find({DeptYear: 2018})
+  let de = depts
   for(let i=1;i<fileD.length;i++){
     let ind = response.findIndex(obj=>{
       return fileD[i][1] === 0 && obj.id == fileD[i][0]
@@ -26,8 +27,9 @@ router.post('/slidingup', async (req,res) => {
       }
     }
   }
-  console.log(response)
+  console.log(depts)
   for (let i = 0; i < response.length; i++) {
+    if(response[i].allocated !==response[i].preference){
       let department = depts.findIndex(obj => {
         return obj.DeptName === response[i].preference;
       });
@@ -52,19 +54,51 @@ router.post('/slidingup', async (req,res) => {
             let temp = { ...response[i]._doc };
             response[i] = { ...temp, allocated: "None" };
           } else {
-            response[i].allocated = depts[department3].DeptName;
-            ++depts[department3].allocated;
+            if(response[i].allocated !== "None"){
+              let d = depts.findIndex(obj=>{
+                return obj.DeptName === response[i].allocated
+              })
+              if(d!==-1){
+                --depts[d].allocated
+                response[i].allocated = depts[department3].DeptName;
+                ++depts[department3].allocated;
+              }
+            }else{
+              response[i].allocated = depts[department3].DeptName;
+              ++depts[department3].allocated;
+            }
           }
         } else {
-            response[i].allocated = depts[department2].DeptName;          
-          ++depts[department2].allocated;
+          if(response[i].allocated !== "None"){
+            let d = depts.findIndex(obj=>{
+              return obj.DeptName === response[i].allocated
+            })
+            if(d!==-1){
+              --depts[d].allocated
+              response[i].allocated = depts[department2].DeptName;
+              ++depts[department2].allocated;
+            }
+          }else{
+            response[i].allocated = depts[department2].DeptName;
+            ++depts[department2].allocated;
+          }
         }
       } else {
-        response[i].allocated = depts[department].DeptName;
-        ++depts[department].allocated;
-      }
+          response[i].allocated = depts[department].DeptName;
+          ++depts[department].allocated;
+        }
+    }
+ 
   }
-  res.json(response)
+  res.json({
+    response: response,
+    seats: depts
+  })
+  await departModel.collection.drop();
+  await departModel.insertMany(depts);
+  let dep = await departModel.find({DeptYear: 2018})
+  console.log(dep)
+
 })
 
 router.post("/atitScoresAndUser", async (req, res) => {

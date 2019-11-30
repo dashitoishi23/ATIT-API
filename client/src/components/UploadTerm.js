@@ -10,12 +10,16 @@ export default class fileUpload extends Component{
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
         this.onClick = this.onClick.bind(this)
+        this.onClick1 = this.onClick1.bind(this)
     }
     onChange(e){
         this.setState({file:e.target.files[0]})
     }
     onClick(){
         this.props.history.push('/merit')
+    }
+    onClick1(){
+        this.props.history.push('/')
     }
     onSubmit(e){
         e.preventDefault()
@@ -38,7 +42,7 @@ export default class fileUpload extends Component{
     }
     render(){
         return(
-        <div>
+        <div className='container'>
         <form onSubmit={this.onSubmit}>
         <div className="form-group"  >
             <label htmlFor="exampleFormControlFile1">Upload ATIT Term Fee Details</label>
@@ -47,6 +51,10 @@ export default class fileUpload extends Component{
         </div>
         </form>
         <button onClick={this.onClick}>Merit List of Students</button>
+        <button onClick={this.onClick1}>Upload ATIT Scoresheet</button>
+        <h3>File Format</h3>
+        <p>Column1. ID</p>
+        <p>Column2. Fee Status (0->Not Paid, 1->Paid)</p>
         </div>
         )
     }

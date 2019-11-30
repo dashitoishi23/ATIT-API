@@ -7,6 +7,7 @@ import MeritList from './components/MeritList'
 import UploadTerm from './components/UploadTerm'
 import Upload from './components/Upload'
 import Sliding from './components/SlidingList'
+import UpdateSeats from './components/UpdateSeats'
 
 class App extends Component{
   render(){
@@ -19,6 +20,7 @@ class App extends Component{
       <Route exact path="/alloc" component={AllocList} />
       <Route exact path="/merit" component={MeritList} />
       <Route exact path="/slide" component={Sliding} />
+      <Route exact path="/updSeats" component={UpdateSeats} />
       </Router>
       </div>
     )

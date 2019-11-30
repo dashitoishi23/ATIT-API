@@ -7,13 +7,18 @@ export default class MeritList extends Component{
     constructor(){
         super()
         this.state={
-            allocList: []
+            allocList: [],
+            seats:[]
         }
     }
     componentDidMount(){
         axios.post('/api/mer/slidingup')
         .then(res=>{
-            this.setState({allocList:res.data})
+          console.log(res.data)
+          this.setState({
+            allocList: res.data.response,
+            seats: res.data.seats
+          })
         })
         .catch(err=>console.log(err))
     }
@@ -44,6 +49,9 @@ export default class MeritList extends Component{
                 <li className="nav-item">
                 <Link className="nav-link" to="/slide">Sliding Up List</Link>
                 </li>
+                <li className="nav-item">
+            <Link className="nav-link" to="/updSeats">Update Seats</Link>
+            </li>
           </ul> 
         </div> 
         </nav>
@@ -59,6 +67,9 @@ export default class MeritList extends Component{
                       <th className='text-center'>Name</th>
                       <th className='text-center'>ATIT Score</th>
                       <th className='text-center'>Branch Allocated</th>
+                      <th className='text-center'>Preference</th>
+                      <th className='text-center'>Preference 2</th>
+                      <th className='text-center'>Preference 3</th>
                     </tr>
                     {this.state.allocList.map((stu,ind)=>{
                     let disp = null
@@ -69,6 +80,9 @@ export default class MeritList extends Component{
                             <th className='text-center'>{stu.name}</th>
                             <th className='text-center'>{stu.totalScore}</th>
                             <th className='text-center'>{stu.allocated }</th>
+                            <th className='text-center'>{stu.preference }</th>
+                            <th className='text-center'>{stu.preference2 }</th>
+                            <th className='text-center'>{stu.preference3 }</th>
                             </tr>
                         )
                     return disp
@@ -82,6 +96,32 @@ export default class MeritList extends Component{
           </div>      
         </div>
       </div>
+      <div class='container'>
+<div class="card">
+<div class="card-header text-center"><strong>Allotment Details</strong></div>
+<div class="card-body">
+<table class="table table-striped table-responsive-md">
+<thead>
+  <tr class='text-center'>
+   <th>Branch</th>
+   <th>Total Seats</th>
+   <th>Allocated</th>
+   </tr>
+    {this.state.seats.map((obj,ind)=>{
+      return(
+      <tr key={ind}>
+      <th>{obj.DeptName}</th>
+      <th>{obj.DeptSeats}</th>
+      <th>{obj.allocated}</th>
+      <th></th> 
+      </tr>
+      )
+    })}
+</thead>
+</table>
+</div>
+</div>
+</div>
 
             </div>
         )
