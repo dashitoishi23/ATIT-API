@@ -23,7 +23,6 @@ export default class UpdateSeats extends Component{
         }
         axios.put('/api/dept/changeSeats',bod)
         .then(res=>{
-            console.log(res)
             this.props.history.push('/merit')
         })
         .catch(err=>console.log(err))

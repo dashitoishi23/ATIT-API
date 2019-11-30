@@ -32,7 +32,6 @@ export default class fileUpload extends Component{
             }
         })
         .then(res=>{
-            console.log(res)
             this.props.history.push('/uploadTerm')
         })
         .catch(err=>{

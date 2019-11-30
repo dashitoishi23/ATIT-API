@@ -17,11 +17,11 @@ export default class MeritList extends Component{
           }
         axios.post('/api/mer/atitScoresAndUser',year)
         .then(res=>{
-          console.log(res.data)
+
             this.setState({allocList:res.data})
             axios.post('/api/dept/deptNamesAndSeats')
             .then(res=>{
-              console.log(res.data)
+    
               this.setState({seats:res.data})
             })
             .catch(err=>console.log(err))

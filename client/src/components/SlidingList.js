@@ -14,8 +14,7 @@ export default class MeritList extends Component{
     componentDidMount(){
         axios.post('/api/mer/slidingup')
         .then(res=>{
-          console.log(res.data)
-          this.setState({
+                    this.setState({
             allocList: res.data.response,
             seats: res.data.seats
           })

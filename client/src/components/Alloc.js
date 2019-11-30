@@ -18,7 +18,6 @@ export default class AllocList extends Component{
             this.setState({allocList:ans.data})
             axios.post('/api/dept/deptNamesAndSeats')
             .then(res=>{
-              console.log(res.data)
               this.setState({seats:res.data})
             })
             .catch(err=>console.log(err))
