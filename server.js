@@ -6,6 +6,7 @@ const db = require('./config/keys').mongo
 const uplRoute = require('./routes/upload')
 const merRoute = require('./routes/meritList')
 const deptRoute = require("./routes/department");
+const userRoute = require('./routes/users')
 const path = require('path')
 
 
@@ -33,6 +34,7 @@ if(process.env.NODE_ENV === 'production'){
 app.use( '/api', uplRoute );
 app.use('/api/mer',merRoute);
 app.use('/api/dept', deptRoute)
+app.use('/api/users', userRoute)
 
 const port = process.env.PORT || 5000;
 

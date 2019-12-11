@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
+import '../styles/allocList.css'
 import axios from 'axios'
 
 export default class fileUpload extends Component{
@@ -9,17 +11,9 @@ export default class fileUpload extends Component{
         }
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
-        this.onClick = this.onClick.bind(this)
-        this.onClick1 = this.onClick1.bind(this)
     }
     onChange(e){
         this.setState({file:e.target.files[0]})
-    }
-    onClick(){
-        this.props.history.push('/merit')
-    }
-    onClick1(){
-        this.props.history.push('/uploadTerm')
     }
     onSubmit(e){
         e.preventDefault()
@@ -39,9 +33,36 @@ export default class fileUpload extends Component{
         })
 
     }
+    componentDidMount(){
+        if(localStorage.length===0){
+            this.props.history.push('/')
+        }
+    }
     render(){
         return(
         <div className='container'>
+                <div className="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul className="navbar-nav">
+            <li className="nav-item">
+            <Link className="nav-link" to="/">Upload</Link>
+            </li>
+            <li className="nav-item">
+            <Link className="nav-link" to="/uploadTerm">Upload Fee Details</Link>
+            </li>
+            <li className="nav-item">
+            <Link className="nav-link" to="/merit">Merit List</Link>
+            </li>
+            <li className="nav-item">
+            <Link className="nav-link" to="/alloc">Allocation List</Link>
+            </li>
+            <li className="nav-item">
+            <Link className="nav-link" to="/slide">Sliding Up List</Link>
+            </li>
+            <li className="nav-item">
+            <Link className="nav-link" to="/updSeats">Update Seats</Link>
+            </li>
+      </ul> 
+    </div> 
         <form onSubmit={this.onSubmit}>
         <div className="form-group"  >
             <label htmlFor="exampleFormControlFile1">Upload ATIT excelsheet</label>
@@ -49,8 +70,21 @@ export default class fileUpload extends Component{
             <button type="submit">Upload file</button>
         </div>
         </form>
-        <button onClick={this.onClick}>Merit List of Students</button>
-        <button onClick={this.onClick1}>Upload a fee status file</button>
+        <br />
+        <br />
+        <Link to='/merit'><button>Merit List of Students</button></Link>
+        <br />
+        <br />
+        <Link to='/uploadTerm'><button>Upload a fee status file</button></Link>
+        <br />
+        <br />
+        <Link to='/alloc'><button>Allocation List</button></Link>
+        <br />
+        <br />
+        <Link to='/slide'><button >Sliding Up List</button></Link>
+        <br />
+        <br />
+        <Link to='/updSeats'><button >Update Seats</button></Link>
         <h3>File Format</h3>
         <p>Column 1. ID</p>
         <p>Column 2. Name</p>

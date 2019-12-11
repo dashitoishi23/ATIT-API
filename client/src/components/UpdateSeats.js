@@ -16,6 +16,11 @@ export default class UpdateSeats extends Component{
     onChange(e){
         this.setState({[e.target.name]:e.target.value});
     }
+    componentDidMount(){
+      if(localStorage.length===0){
+          this.props.history.push('/')
+      }
+  }
     onSubmit(e){
         e.preventDefault()
         let bod = {
@@ -41,7 +46,7 @@ export default class UpdateSeats extends Component{
     <div className="collapse navbar-collapse" id="collapsibleNavbar">
       <ul className="navbar-nav">
             <li className="nav-item">
-            <Link className="nav-link" to="/">Upload</Link>
+            <Link className="nav-link" to="/upl">Upload</Link>
             </li>
             <li className="nav-item">
             <Link className="nav-link" to="/uploadTerm">Upload Fee Details</Link>

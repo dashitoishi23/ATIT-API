@@ -19,7 +19,12 @@ export default class fileUpload extends Component{
         this.props.history.push('/merit')
     }
     onClick1(){
-        this.props.history.push('/')
+        this.props.history.push('/upl')
+    }
+    componentDidMount(){
+        if(localStorage.length===0){
+            this.props.history.push('/')
+        }
     }
     onSubmit(e){
         e.preventDefault()

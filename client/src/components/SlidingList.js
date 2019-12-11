@@ -12,6 +12,9 @@ export default class MeritList extends Component{
         }
     }
     componentDidMount(){
+      if(localStorage.length===0){
+        this.props.history.push('/')
+      }
         axios.post('/api/mer/slidingup')
         .then(res=>{
                     this.setState({
@@ -34,7 +37,7 @@ export default class MeritList extends Component{
         <div className="collapse navbar-collapse" id="collapsibleNavbar">
           <ul className="navbar-nav">
                 <li className="nav-item">
-                <Link className="nav-link" to="/">Upload</Link>
+                <Link className="nav-link" to="/upl">Upload</Link>
                 </li>
                 <li className="nav-item">
                 <Link className="nav-link" to="/uploadTerm">Upload Fee Details</Link>
