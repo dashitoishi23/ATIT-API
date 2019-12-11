@@ -10,6 +10,12 @@ export default class MeritList extends Component{
             allocList: [],
             seats: []
         }
+        this.onClick = this.onClick.bind(this)
+    }
+    onClick(){
+      localStorage.removeItem('sessionUser')
+      localStorage.removeItem('loginJwt')
+      this.props.history.push('/')
     }
     componentDidMount(){
       if(localStorage.length === 0){
@@ -128,6 +134,7 @@ export default class MeritList extends Component{
 </div>
 </div>
 </div>
+<button onClick={this.onClick}>LOG OUT</button>
 </div>
     )
     return this.state.seats.length!==0?show:<h1>Loading</h1>

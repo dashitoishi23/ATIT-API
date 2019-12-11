@@ -12,9 +12,15 @@ export default class UpdateSeats extends Component{
         }
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+        this.onClick = this.onClick.bind(this)
     }
     onChange(e){
         this.setState({[e.target.name]:e.target.value});
+    }
+    onClick(){
+      localStorage.removeItem('sessionUser')
+      localStorage.removeItem('loginJwt')
+      this.props.history.push('/')
     }
     componentDidMount(){
       if(localStorage.length===0){
@@ -88,6 +94,7 @@ export default class UpdateSeats extends Component{
   </div>
   </div>
   </div>
+  <button onClick={this.onClick}>LOG OUT</button>
   </div>
   )
   return show

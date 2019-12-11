@@ -11,9 +11,15 @@ export default class fileUpload extends Component{
         }
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+        this.onClick = this.onClick.bind(this)
     }
     onChange(e){
         this.setState({file:e.target.files[0]})
+    }
+    onClick(){
+        localStorage.removeItem('sessionUser')
+        localStorage.removeItem('loginJwt')
+        this.props.history.push('/')
     }
     onSubmit(e){
         e.preventDefault()
@@ -85,6 +91,7 @@ export default class fileUpload extends Component{
         <br />
         <br />
         <Link to='/updSeats'><button >Update Seats</button></Link>
+        <button onClick={this.onClick}>LOG OUT</button>
         <h3>File Format</h3>
         <p>Column 1. ID</p>
         <p>Column 2. Name</p>
