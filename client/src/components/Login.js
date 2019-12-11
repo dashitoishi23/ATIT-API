@@ -14,16 +14,16 @@ class Login extends Component{
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-        // this.onClick = this.onClick.bind(this)
+        this.onClick = this.onClick.bind(this)
     }
     onChange(e){
         this.setState({[e.target.name]:e.target.value});
     }
-    // onClick(){
-    //     localStorage.removeItem('sessionUser')
-    //     localStorage.removeItem('loginJwt')
-    //     this.props.history.push('/')
-    // }
+    onClick(){
+        localStorage.removeItem('sessionUser')
+        localStorage.removeItem('loginJwt')
+        this.props.history.push('/')
+    }
     componentWillReceiveProps(nextProps){
         if(nextProps.auth.isAuthenticated){
             this.props.history.push({
@@ -89,9 +89,9 @@ class="form-control" id="exampleInputPassword1" placeholder="Password"  onChange
 </form>
 </div>)
         return(
-            localStorage.getItem('sessionUser') === 'admin'?<Link to={{
+            localStorage.getItem('sessionUser') === 'admin'?<div><Link to={{
                 pathname:'/upl'
-                }}>Upload Documents</Link>:logDisp
+                }}>Upload Documents</Link><button onClick={this.onClick}>LOG OUT</button></div>:logDisp
         )
     }
 }
