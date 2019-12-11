@@ -66,7 +66,7 @@ class Login extends Component{
 <label for="exampleInputEmail">Username</label>
 <input type="text" name="username" class="form-control"
 id="exampleInputEmail1" aria-describedby="emailHelp"
-placeholder="Enter email" onChange={this.onChange} required />
+placeholder="Enter username" onChange={this.onChange} required />
 {errors.username && (
 <div className="alert alert-primary" role="alert">
 {errors.username}
